@@ -29,7 +29,7 @@ function movie88s (callback){
             console.log("adderr"+err)
             return
           }
-          console.log("更新成功")
+          // console.log("更新成功")
         })
       })
       callback(list)
