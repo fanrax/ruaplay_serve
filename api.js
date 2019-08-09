@@ -55,16 +55,14 @@ function myapi(app){
     });
   });
 
-  data_douban.movie(0,(data)=>{
-    app.get("/more/list",(req,res)=>{
-      res.send(data)
+  data_douban.movie(0,(data1)=>{
+    // //88影视网
+    data_movie88s.movie88s((data2)=>{
+      app.get("/list",(req,res)=>{
+        res.send([...data1,...data2])
+      })
     })
   })
-  // //88影视网
-  data_movie88s.movie88s((data)=>{
-    app.get("/movie88s",(req,res)=>{
-      res.send(data)
-    })
-  })
+
 }
 module.exports = myapi

@@ -15,15 +15,15 @@ function movie88s (callback){
         let myid = str[str.length-1].split(".")[0]
         let obj = {
           id:myid,
-          name:item.children[0].attribs.alt,
-          pic:item.children[0].attribs["data-original"],
+          title:item.children[0].attribs.alt,
+          cover:item.children[0].attribs["data-original"],
           url:"https://www.88ys.cc/"+ item.children[0].parent.attribs.href
         }
         list.push(obj)
       })
       list.forEach((item,index)=>{
         let sql = 'UPDATE movie_list SET name = ?,title = ?,url = ?,pic = ? WHERE id = ' + item.id
-        let addSqlParams = [item.name,item.name,item.url,item.pic]
+        let addSqlParams = [item.title,item.title,item.cover,item.pic]
         connection.query(sql,addSqlParams,(err,result)=>{
           if(err){
             console.log("adderr"+err)
