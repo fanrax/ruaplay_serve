@@ -34,24 +34,24 @@ function myapi(app){
     let  sql = `SELECT * FROM login WHERE name = '${req.body.name}'`
     //查
     connection.query(sql,function (err, result) {
-      if(err||err==null){
+      if(err||err==null&&!result[0]){
         obj.success = false
         obj.message = "该用户暂未注册"
         res.send(obj);
         return;
-      }else{
-        if(req.body.password !== result[0].password){
-          obj.success = false
-          obj.message = "密码错误"
-          res.send(obj);
-          return
-        }else{
-          obj.success = true
-          obj.message = "登录成功"
-          res.send(obj);
-          return
-        }
       }
+      if(req.body.password !== result[0].password){
+        obj.success = false
+        obj.message = "密码错误"
+        res.send(obj);
+        return
+      }else{
+        obj.success = true
+        obj.message = "登录成功"
+        res.send(obj);
+        return
+      }
+      
     });
   });
 
