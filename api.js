@@ -1,6 +1,7 @@
 
 const data_douban = require("./reptile")
 const data_movie88s = require("./movie88")
+const data_fund = require("./fund")
 const bodyparser = require('body-parser');
 const connection = require("./db")
 function myapi(app){
@@ -61,6 +62,12 @@ function myapi(app){
       app.get("/list",(req,res)=>{
         res.send([...data1,...data2])
       })
+    })
+  })
+  
+  data_fund.fund((data)=>{
+    app.get("/fund",(req,res)=>{
+      res.send(data)
     })
   })
 
